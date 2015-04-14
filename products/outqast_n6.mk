@@ -6,8 +6,8 @@ $(call inherit-product, vendor/outqast/configs/common.mk)
 
 # Setup device specific product configuration
 PRODUCT_NAME := outqast_n6
-PRODUCT_DEVICE := google
-PRODUCT_BRAND := shamu
+PRODUCT_DEVICE := shamu
+PRODUCT_BRAND := google
 PRODUCT_MODEL := Nexus 6
 PRODUCT_MANUFACTURER := motorola
 
