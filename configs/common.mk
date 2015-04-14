@@ -133,7 +133,7 @@ PRODUCT_COPY_FILES += \
         
 # APNs
 PRODUCT_COPY_FILES += \
-        $(LOCAL_PATH)/etc/apns-full-conf.xml:/system/etc/apns-full-conf.xml
+        $(LOCAL_PATH)/etc/apns-conf.xml:/system/etc/apns-conf.xml
        
         
 # DRM
