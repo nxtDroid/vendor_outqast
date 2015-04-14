@@ -1,8 +1,8 @@
 # Brand
-PRODUCT_BRAND ?= frank
+PRODUCT_BRAND ?= outqast
 
 # Local path for prebuilts
-LOCAL_PATH:= vendor/frank/prebuilts/common/system
+LOCAL_PATH:= vendor/outqast/prebuilts/common/system
 
 # Common build prop overrides 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -27,10 +27,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     net.tethering.noprovisioning=true \
     persist.sys.dun.override=0 \
     ro.mod.display.version=15-Finally \
-    drm.service.enabled=true \
+    drm.service.enabled=true
      
 # Common overlays
-PRODUCT_PACKAGE_OVERLAYS += vendor/frank/overlays/common
+PRODUCT_PACKAGE_OVERLAYS += vendor/outqast/overlays/common
 
 # Needed Packages
 PRODUCT_PACKAGES += \
@@ -57,8 +57,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bin/backuptool.sh:system/bin/backuptool.sh
 
 # Bootanimation support
+ifeq (outqast_n6,$(TARGET_PRODUCT))
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/media/bootanimation.zip:system/media/bootanimation.zip
+    vendor/outqast/prebuilts/shamu/system/media/bootanimation.zip:system/media/bootanimation.zip
+endif
+
     
 #add n6 audio files
 # Alarms
@@ -130,7 +133,7 @@ PRODUCT_COPY_FILES += \
         
 # APNs
 PRODUCT_COPY_FILES += \
-        $(LOCAL_PATH)/etc/apns-full-conf.xml:/system/etc/apns-full-conf.xml \
+        $(LOCAL_PATH)/etc/apns-full-conf.xml:/system/etc/apns-full-conf.xml
        
         
 # DRM
@@ -141,12 +144,13 @@ PRODUCT_COPY_FILES += \
         $(LOCAL_PATH)/vendor/lib/mediadrm/libdrmclearkeyplugin.so:/system/vendor/lib/mediadrm/libdrmclearkeyplugin.so \
         $(LOCAL_PATH)/vendor/lib/libWVStreamControlAPI_L1.so:/system/vendor/lib/libWVStreamControlAPI_L1.so \
         $(LOCAL_PATH)/vendor/lib/drm/libdrmwvmplugin.so:/system/vendor/lib/drm/libdrmwvmplugin.so \
-        $(LOCAL_PATH)/vendor/lib/mediadrm/libwvdrmengine.so:/system/vendor/lib/mediadrm/libwvdrmengine.so \
+        $(LOCAL_PATH)/vendor/lib/mediadrm/libwvdrmengine.so:/system/vendor/lib/mediadrm/libwvdrmengine.so
         
 #Setools Android port http://forum.xda-developers.com/android/software/setools-android-sepolicy-inject-t2977563
 PRODUCT_COPY_FILES += \
         $(LOCAL_PATH)/xbin/seinfo:system/xbin/seinfo \
         $(LOCAL_PATH)/xbin/sesearch:system/xbin/sesearch \
-        $(LOCAL_PATH)/xbin/sepolicy-inject:system/xbin/sepolicy-inject \
+        $(LOCAL_PATH)/xbin/sepolicy-inject:system/xbin/sepolicy-inject
 
-        
+# Inherit common extras
+$(call inherit-product, vendor/outqast/extras/device-partial.mk)
